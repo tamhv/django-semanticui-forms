@@ -60,8 +60,8 @@ def get_choices(field):
 		empty_label = None
 
 	# Add custom empty value
-	if empty_label or not field.field.required:
+	if ch and empty_label or not field.field.required:
 		if needs_empty_value:
-			choices.insert(0, ("", empty_label or BLANK_CHOICE_DASH[0][1]))
+			ch.insert(0, ("", empty_label or BLANK_CHOICE_DASH[0][1]))
 
-	return choices
+	return ch
