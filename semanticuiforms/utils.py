@@ -47,12 +47,13 @@ def get_choices(field):
 		choices += ((getattr(obj, field_name), str(obj)) for obj in queryset)
 
 	# Determine if an empty value is needed
-	if choices and (choices[0][1] == BLANK_CHOICE_DASH[0][1] or choices[0][0]):
+	ch = list(choices) if choices else None
+	if ch and (ch[0][1] == BLANK_CHOICE_DASH[0][1] or ch[0][0]):
 		needs_empty_value = True
 
 		# Delete empty option
-		if not choices[0][0]:
-			del choices[0]
+		if not ch[0][0]:
+			del ch[0]
 
 	# Remove dashed empty choice
 	if empty_label == BLANK_CHOICE_DASH[0][1]:
